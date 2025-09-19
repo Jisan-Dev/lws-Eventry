@@ -1,3 +1,9 @@
+import Header from "@/components/landing/Header";
+
 export default function Home() {
-  return <div className="text-xl">Hello world</div>;
+  return (
+    <section className="container">
+      <Header />
+    </section>
+  );
 }
