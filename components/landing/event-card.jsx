@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import ActionButtons from "../action-buttons";
 
 export default function EventCard() {
   return (
@@ -13,7 +14,7 @@ export default function EventCard() {
       />
 
       <div className="p-3">
-        <Link href="/" className="font-bold text-lg">
+        <Link href="/details/1" className="font-bold text-lg">
           Google I/O Extended
         </Link>
         <p className="text-[#9C9C9C] text-sm mt-1">
@@ -26,13 +27,7 @@ export default function EventCard() {
         </div>
 
         {/* <!-- Buttons --> */}
-        <div className="w-full flex gap-4 mt-4">
-          {/* <!-- bg-indigo-600 indicating Active --> */}
-          <button className="w-full bg-indigo-600 hover:bg-indigo-800">Interested</button>
-
-          {/* <!-- bg-green-600 indicating Active --> */}
-          <button className="w-full">Going</button>
-        </div>
+        <ActionButtons />
       </div>
     </div>
   );
