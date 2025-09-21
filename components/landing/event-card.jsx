@@ -14,14 +14,20 @@ export default function EventCard({ event }) {
       />
 
       <div className="p-3">
-        <Link href={`/details/${event?.id}}`} className="font-bold text-lg">
+        <Link href={`/details/${event?.id}`} className="font-bold text-lg">
           {event?.name}
         </Link>
         <p className="text-[#9C9C9C] text-sm mt-1">{event?.location}</p>
         <div className="text-[#737373] text-sm mt-1">
-          <span>{event?.interested_ids?.length}k Interested</span>
-          <span>|</span>
-          <span>{event?.going_ids?.length}K Going</span>
+          <span>
+            {event?.interested_ids?.length}
+            {event?.going_ids?.length > 0 ? "K" : ""} Interested
+          </span>{" "}
+          <span>|</span>{" "}
+          <span>
+            {event?.going_ids?.length}
+            {event?.going_ids?.length > 0 ? "K" : ""} Going
+          </span>
         </div>
 
         {/* <!-- Buttons --> */}

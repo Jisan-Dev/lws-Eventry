@@ -1,4 +1,4 @@
-export default function DetailContent() {
+export default function DetailContent({ description, swags }) {
   return (
     <div className="col-span-3">
       <div className="w-full h-full bg-[#242526] p-6 rounded-lg">
@@ -14,11 +14,15 @@ export default function DetailContent() {
           </p>
 
           <ul>
-            <li>🎉 Free T-shirt</li>
+            {swags.map((item, index) => (
+              <li key={index}>📌 {item}</li>
+            ))}
+
+            {/* <li>🎉 Free T-shirt</li>
             <li>🕹️ Networking</li>
             <li>🎯 Networking</li>
             <li>📌 Free Foods</li>
-            <li>🚀 Free Wifi</li>
+            <li>🚀 Free Wifi</li> */}
           </ul>
         </div>
       </div>
