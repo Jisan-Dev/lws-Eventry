@@ -1,4 +1,5 @@
 import { EventModel } from "@/models/event-model";
+import { UserModel } from "@/models/user-model";
 import dbConnect from "@/services/mongodbConnect";
 
 const getAllEvents = async () => {
@@ -13,4 +14,8 @@ const getEventById = async (eventId) => {
   return event;
 };
 
-export { getAllEvents, getEventById };
+const createUser = async (userData) => {
+  return await UserModel.create(userData);
+};
+
+export { createUser, getAllEvents, getEventById };
