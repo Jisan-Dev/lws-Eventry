@@ -1,4 +1,5 @@
 import Navbar from "@/components/navbar";
+import AuthProvider from "@/providers/AuthProvider";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -18,8 +19,10 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${inter.variable} font-inter`}>
-        <Navbar />
-        <main className="py-8">{children}</main>
+        <AuthProvider>
+          <Navbar />
+          <main className="py-8">{children}</main>
+        </AuthProvider>
       </body>
     </html>
   );
