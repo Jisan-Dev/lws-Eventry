@@ -34,3 +34,40 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### notes
+
+#### Passing Data from Server to Client Components
+
+When passing data from a Server Component to a Client Component (for example, as props), the data must be serializable. Complex objects, like Mongoose document instances, are not serializable and will cause an error.
+Mongoose documents are complex objects with methods, not plain data, which causes the error you saw.
+
+**Error Example:**
+
+> Only plain objects, and a few built-ins, can be passed to Client Components from Server Components. Classes or null prototypes are not supported.
+
+This typically happens when you fetch data using Mongoose and pass the result directly to a client-side component.
+
+**Initial Solution & Its Problem:**
+
+A common first attempt is to use the `.lean()` method on a Mongoose query.
+
+```javascript
+const events = await Event.find().lean(); // Returns plain JS objects
+```
+
+While this returns plain JavaScript objects and fixes the serialization error, it has a significant drawback: **it strips away Mongoose virtuals**. This means the convenient `id` field (a string version of `_id`) will be missing from the objects.
+
+**Recommended Solution:**
+
+To preserve virtuals like `id`, you should manually convert the Mongoose document to a plain object. The most reliable way is to stringify the object and then parse it back. This correctly applies `toJSON` transformations defined in your schema, including virtuals.
+
+```javascript
+// 1. Fetch the full Mongoose document(s)
+const eventsFromDB = await Event.find();
+
+// 2. Serialize the document(s) to plain objects
+const plainEvents = JSON.parse(JSON.stringify(eventsFromDB));
+
+// Now, `plainEvents` can be safely passed to Client Components with the `id` field intact.
+```

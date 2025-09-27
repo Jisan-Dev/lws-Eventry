@@ -31,7 +31,7 @@ export default function EventCard({ event }) {
         </div>
 
         {/* <!-- Buttons --> */}
-        <ActionButtons />
+        <ActionButtons eventId={event?.id} interestedUserIds={event?.interested_ids} />
       </div>
     </div>
   );
