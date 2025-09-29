@@ -1,9 +1,8 @@
 "use server";
 
+import { createUser, findUserByCredentials, updateGoing, updateInterest } from "@/db/queries";
 import { revalidatePath } from "next/cache";
-
-const { createUser, findUserByCredentials, updateInterest } = require("@/db/queries");
-const { redirect } = require("next/navigation");
+import { redirect } from "next/navigation";
 
 const registerUser = async (formData) => {
   const user = Object.fromEntries(formData);
@@ -32,4 +31,14 @@ async function addInterestedEvent(eventId, authId) {
   revalidatePath("/");
 }
 
-export { addInterestedEvent, performLogin, registerUser };
+async function addGoingEvent(eventId, auth) {
+  try {
+    await updateGoing(eventId, auth?.id, auth?.name, auth?.email);
+    revalidatePath("/");
+    return true;
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { addGoingEvent, addInterestedEvent, performLogin, registerUser };

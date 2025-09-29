@@ -19,19 +19,16 @@ export default function EventCard({ event }) {
         </Link>
         <p className="text-[#9C9C9C] text-sm mt-1">{event?.location}</p>
         <div className="text-[#737373] text-sm mt-1">
-          <span>
-            {event?.interested_ids?.length}
-            {event?.going_ids?.length > 0 ? "K" : ""} Interested
-          </span>{" "}
-          <span>|</span>{" "}
-          <span>
-            {event?.going_ids?.length}
-            {event?.going_ids?.length > 0 ? "K" : ""} Going
-          </span>
+          <span>{event?.interested_ids?.length} Interested</span> <span>|</span>{" "}
+          <span>{event?.going_ids?.length} Going</span>
         </div>
 
         {/* <!-- Buttons --> */}
-        <ActionButtons eventId={event?.id} interestedUserIds={event?.interested_ids} />
+        <ActionButtons
+          eventId={event?.id}
+          interestedUserIds={event?.interested_ids}
+          goingUserIds={event?.going_ids}
+        />
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
 import { EventModel } from "@/models/event-model";
 import { UserModel } from "@/models/user-model";
 import dbConnect from "@/services/mongodbConnect";
+import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
 const getAllEvents = async () => {
@@ -21,8 +22,8 @@ const createUser = async (userData) => {
 
 const findUserByCredentials = async (credentials) => {
   const userDb = await UserModel.findOne(credentials);
-  const user = { ...userDb.toObject({ getters: true }) }; // id(string type of _id) is a default getter
-  if (user) {
+  if (userDb) {
+    const user = { ...userDb.toObject({ getters: true }) }; // id(string type of _id) is a default getter
     return user;
   }
   return null;
@@ -44,4 +45,34 @@ const updateInterest = async (eventId, authId) => {
   }
 };
 
-export { createUser, findUserByCredentials, getAllEvents, getEventById, updateInterest };
+const updateGoing = async (eventId, authId, authName, authEmail) => {
+  const event = await EventModel.findById(eventId);
+  event.going_ids.push(new mongoose.Types.ObjectId(authId));
+  event.save();
+  const formD = {
+    name: authName,
+    from_name: "Eventry",
+    email: authEmail,
+    to_email: authEmail,
+    event: event.name,
+  };
+  await emailjs.send(
+    process.env.NEXT_PUBLIC_EMAILJS_SERVICEID,
+    process.env.NEXT_PUBLIC_EMAILJS_TEMPLATEID,
+    formD,
+    {
+      publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+      privateKey: process.env.NEXT_PUBLIC_EMAILJS_PRIVATE_KEY,
+    }
+  );
+  console.log("SUCCESS!");
+};
+
+export {
+  createUser,
+  findUserByCredentials,
+  getAllEvents,
+  getEventById,
+  updateGoing,
+  updateInterest,
+};

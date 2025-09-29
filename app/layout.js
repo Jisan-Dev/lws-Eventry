@@ -1,5 +1,6 @@
 import Navbar from "@/components/navbar";
 import AuthProvider from "@/providers/AuthProvider";
+import dbConnect from "@/services/mongodbConnect";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
@@ -15,7 +16,8 @@ export const metadata = {
   publisher: "Jisan",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  await dbConnect();
   return (
     <html lang="en">
       <body className={`${inter.variable} font-inter`}>

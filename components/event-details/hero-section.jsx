@@ -19,15 +19,8 @@ export default function HeroSection({ event }) {
           <h1 className="font-bold text-2xl">{event?.name}</h1>
           <p className="text-[#9C9C9C] text-base mt-1">{event?.location}</p>
           <div className="text-[#737373] text-sm mt-1">
-            <span>
-              {event?.interested_ids?.length}
-              {event?.going_ids?.length > 0 ? "K" : ""} Interested
-            </span>{" "}
-            <span>|</span>{" "}
-            <span>
-              {event?.going_ids?.length}
-              {event?.going_ids?.length > 0 ? "K" : ""} Going
-            </span>
+            <span>{event?.interested_ids?.length} Interested</span> <span>|</span>{" "}
+            <span>{event?.going_ids?.length} Going</span>
           </div>
         </div>
 

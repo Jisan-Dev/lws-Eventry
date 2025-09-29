@@ -7,11 +7,13 @@ import { useState } from "react";
 
 export default function LoginForm() {
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { setAuth } = useAuth();
   const router = useRouter();
 
   const onSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const formData = new FormData(e.currentTarget);
       const found = await performLogin(formData);
@@ -24,6 +26,9 @@ export default function LoginForm() {
       }
     } catch (error) {
       setError(error.message);
+    } finally {
+      setLoading(false);
+      e.target.reset();
     }
   };
 
@@ -42,7 +47,7 @@ export default function LoginForm() {
         </div>
 
         <button type="submit" className="btn-primary w-full mt-4 bg-indigo-600 hover:bg-indigo-800">
-          Login
+          {loading ? "Logging in..." : "Login"}
         </button>
       </form>
     </>
