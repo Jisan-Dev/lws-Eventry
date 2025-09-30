@@ -71,3 +71,14 @@ const plainEvents = JSON.parse(JSON.stringify(eventsFromDB));
 
 // Now, `plainEvents` can be safely passed to Client Components with the `id` field intact.
 ```
+
+**demo user credentials:**
+
+```json
+{
+  "email": "yotocor620@mv6a.com",
+  "password": "password"
+}
+```
+
+- Use an email that you can access the inbox because an email will be sent to that email after booking an event with details.

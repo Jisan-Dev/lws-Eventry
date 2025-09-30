@@ -2,13 +2,11 @@ import EventList from "@/components/landing/event-list";
 import Header from "@/components/landing/Header";
 import { getAllEvents } from "@/db/queries";
 
-export default async function Home() {
-  const events = await getAllEvents();
-
+export default async function Home({ searchParams: { query } }) {
   return (
     <section className="container">
       <Header />
-      <EventList events={events} />
+      <EventList query={query} events={await getAllEvents(query)} />
     </section>
   );
 }

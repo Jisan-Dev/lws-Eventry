@@ -4,9 +4,17 @@ import dbConnect from "@/services/mongodbConnect";
 import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
-const getAllEvents = async () => {
-  dbConnect();
-  const allEvents = await EventModel.find();
+const getAllEvents = async (query) => {
+  // dbConnect();
+  let allEvents = [];
+
+  if (query) {
+    // const regex = new RegExp(query, 'i'); // 'i' makes the search case-insensitive
+    allEvents = await EventModel.find({ name: { $regex: query, $options: "i" } });
+  } else {
+    allEvents = await EventModel.find();
+  }
+
   return allEvents;
 };
 
@@ -74,5 +82,6 @@ export {
   getAllEvents,
   getEventById,
   updateGoing,
-  updateInterest,
+  updateInterest
 };
+
