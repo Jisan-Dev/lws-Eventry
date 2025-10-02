@@ -27,7 +27,7 @@ export default function SearchInput() {
     <input
       type="text"
       placeholder="Search an Event"
-      className="bg-[#27292F] border border-[#CCCCCC]/20 py-1 px-2 rounded-md"
+      className="bg-[#27292F] border border-[#CCCCCC]/20 py-1 px-2 rounded-md max-sm:w-48"
       onChange={(e) => handleSearch(e.target.value)}
       defaultValue={searchParams.get("query")?.toString()}
     />

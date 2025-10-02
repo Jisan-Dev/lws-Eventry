@@ -23,7 +23,7 @@ export default async function RootLayout({ children }) {
       <body className={`${inter.variable} font-inter`}>
         <AuthProvider>
           <Navbar />
-          <main className="py-8">{children}</main>
+          <main className="py-4 sm:py-8">{children}</main>
         </AuthProvider>
       </body>
     </html>
