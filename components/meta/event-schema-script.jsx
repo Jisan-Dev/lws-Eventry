@@ -3,7 +3,7 @@ export default function EventSchemaScript({ event }) {
 
   const formattedData = {
     "@context": "https://schema.org",
-    "@type": "EducationEvent",
+    "@type": "Event",
     name: eventName,
     startDate: new Date(),
     endDate: new Date(),
@@ -23,9 +23,13 @@ export default function EventSchemaScript({ event }) {
   };
 
   return (
-    <script
-      type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(formattedData) }}
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(formattedData),
+        }}
+      />
+    </>
   );
 }
