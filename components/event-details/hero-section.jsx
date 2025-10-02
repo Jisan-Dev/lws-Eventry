@@ -11,7 +11,7 @@ export default async function HeroSection({ event }) {
         <Image
           src={event?.imageUrl}
           alt={event?.name}
-          className="h-[450px] mx-auto"
+          className="h-[500px] mx-auto object-cover"
           width={900}
           height={900}
           placeholder="blur"
@@ -19,7 +19,7 @@ export default async function HeroSection({ event }) {
         />
       </div>
 
-      <div className="flex items-end">
+      <div className="flex sm:items-end">
         <div className="flex-auto py-4">
           <h1 className="font-bold text-2xl">{event?.name}</h1>
           <p className="text-[#9C9C9C] text-base mt-1">{event?.location}</p>

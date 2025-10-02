@@ -1,17 +1,10 @@
 export default function DetailContent({ description, swags }) {
   return (
-    <div className="col-span-3">
+    <div className="col-span-3 max-sm:col-span-full">
       <div className="w-full h-full bg-[#242526] p-6 rounded-lg">
         <h2 className="font-bold text-2xl">Details</h2>
         <div className="my-2 text-[#AEAEAE] space-y-4 prose lg:prose-lg max-w-none">
-          <p>
-            If you&apos;re passionate about data, coding, and everything tech-related, this is an
-            event you won&apos;t want to miss. Whether you&apos;re a seasoned developer or just
-            getting started, join us to discuss the latest trends in data analysis, programming, and
-            software development. This is a fantastic opportunity to chat with fellow tech
-            enthusiasts, exchange ideas, and maybe even spark some brilliant collaborations. Hosted
-            in the 2nd Floor Training Room at The Power Plant Business Incubator.
-          </p>
+          <p>{description}</p>
 
           <ul>
             {swags.map((item, index) => (

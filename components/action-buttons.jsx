@@ -38,7 +38,10 @@ export default function ActionButtons({
   };
 
   return (
-    <div className={`w-full flex gap-4 mt-4 ${fromDetails && "flex-1"}`}>
+    <div
+      className={`w-full flex gap-4 mt-4 ${
+        fromDetails && "max-sm:w-[230px] sm:flex-1 flex-col md:flex-row"
+      }`}>
       <button
         onClick={() => startTransition(toggleInterest)}
         className={`w-full ${interested && "bg-indigo-600 hover:bg-indigo-800"}`}>

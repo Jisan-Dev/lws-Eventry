@@ -10,7 +10,7 @@ export default async function EventDetailsPage({ params: { id } }) {
     <>
       <HeroSection event={event} />
       <section className="container">
-        <div className="grid grid-cols-5 gap-12 my-12">
+        <div className="grid grid-cols-5 gap-12 my-8 sm:my-12">
           {/* main detailed content part */}
           <DetailContent description={event?.details} swags={event?.swags} />
 

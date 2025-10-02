@@ -4,7 +4,7 @@ export default function EventVenue({ location }) {
     return `https://maps.google.com/maps?q=${query}&output=embed`;
   };
   return (
-    <div className="col-span-2 overflow-hidden rounded-lg bg-[#242526]">
+    <div className="col-span-2 max-sm:col-span-full overflow-hidden rounded-lg bg-[#242526]">
       <div className="w-full">
         <iframe
           src={simpleMapUrl(location)}
