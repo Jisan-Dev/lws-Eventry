@@ -11,10 +11,13 @@
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
     "@emailjs/nodejs": "^5.0.2",
+    "@plaiceholder/next": "^3.0.0",
     "mongoose": "^8.18.1",
     "next": "14.2.32",
+    "plaiceholder": "^3.0.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "sharp": "^0.34.4"
   },
   "devDependencies": {
     "eslint": "^8",
