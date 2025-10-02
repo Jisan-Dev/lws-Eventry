@@ -8,7 +8,7 @@ export default async function Home({ searchParams: { query } }) {
   return (
     <section className="container">
       <Header />
-      <Suspense fallback={<LoadingSpinner />}>
+      <Suspense key={query} fallback={<LoadingSpinner />}>
         <EventList query={query} events={await getAllEvents(query)} />
       </Suspense>
     </section>
