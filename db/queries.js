@@ -1,6 +1,5 @@
 import { EventModel } from "@/models/event-model";
 import { UserModel } from "@/models/user-model";
-import dbConnect from "@/services/mongodbConnect";
 import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
@@ -15,11 +14,10 @@ const getAllEvents = async (query) => {
     allEvents = await EventModel.find();
   }
 
-  return allEvents;
+  return JSON.parse(JSON.stringify(allEvents)); //we have to return plain object instead of mongo doc because nextjs cannot serialize mongo doc. getters:true to get id instead of _id(ObjectId). Warning: Only plain objects can be passed to Client Components from Server Components. Objects with toJSON methods are not supported. Convert it manually to a simple value before passing it to props.
 };
 
 const getEventById = async (eventId) => {
-  dbConnect();
   const event = await EventModel.findById(eventId);
   return event;
 };
@@ -31,7 +29,7 @@ const createUser = async (userData) => {
 const findUserByCredentials = async (credentials) => {
   const userDb = await UserModel.findOne(credentials);
   if (userDb) {
-    const user = { ...userDb.toObject({ getters: true }) }; // id(string type of _id) is a default getter
+    const user = JSON.parse(JSON.stringify(userDb));
     return user;
   }
   return null;
@@ -49,7 +47,7 @@ const updateInterest = async (eventId, authId) => {
       event.interested_ids.push(new mongoose.Types.ObjectId(authId));
     }
     event.save();
-    console.log(event);
+    // console.log(event);
   }
 };
 
@@ -82,6 +80,5 @@ export {
   getAllEvents,
   getEventById,
   updateGoing,
-  updateInterest
+  updateInterest,
 };
-

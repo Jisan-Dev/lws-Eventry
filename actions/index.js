@@ -33,7 +33,7 @@ async function addInterestedEvent(eventId, authId) {
 
 async function addGoingEvent(eventId, auth) {
   try {
-    await updateGoing(eventId, auth?.id, auth?.name, auth?.email);
+    await updateGoing(eventId, auth?._id, auth?.name, auth?.email);
     revalidatePath("/");
     return true;
   } catch (error) {

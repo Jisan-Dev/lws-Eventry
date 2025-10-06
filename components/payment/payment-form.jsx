@@ -15,10 +15,8 @@ export default function PaymentForm({ eventId }) {
         "Payment successful! You are marked as going. Please check your email for confirmation."
       );
       router.push("/");
-      console.log("Payment successful and going updated");
     } else {
       alert("Payment failed! Please try again.");
-      console.log("Payment failed");
     }
   };
   return (

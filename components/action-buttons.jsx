@@ -14,8 +14,8 @@ export default function ActionButtons({
   const { auth } = useAuth();
   const router = useRouter();
 
-  const isInterested = interestedUserIds?.find((id) => id.toString() === auth?.id);
-  const isGoing = goingUserIds?.find((id) => id.toString() === auth?.id);
+  const isInterested = interestedUserIds?.find((id) => id.toString() === auth?._id);
+  const isGoing = goingUserIds?.find((id) => id.toString() === auth?._id);
 
   const [interested, setInterested] = useState(isInterested);
   const [isPending, startTransition] = useTransition();
@@ -23,7 +23,7 @@ export default function ActionButtons({
   const toggleInterest = async () => {
     if (auth) {
       setInterested(!interested);
-      addInterestedEvent(eventId, auth?.id);
+      addInterestedEvent(eventId, auth?._id);
     } else {
       router.push("/login");
     }
