@@ -4,7 +4,7 @@ import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
 const getAllEvents = async (query) => {
-  // dbConnect();
+  dbConnect();
   // dbConnect();
   let allEvents = [];
 
