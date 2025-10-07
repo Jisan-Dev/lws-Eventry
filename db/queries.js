@@ -1,5 +1,6 @@
 import { EventModel } from "@/models/event-model";
 import { UserModel } from "@/models/user-model";
+import dbConnect from "@/services/mongodbConnect";
 import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
@@ -27,6 +28,7 @@ const createUser = async (userData) => {
 };
 
 const findUserByCredentials = async (credentials) => {
+  dbConnect();
   const userDb = await UserModel.findOne(credentials);
   if (userDb) {
     const user = JSON.parse(JSON.stringify(userDb));
