@@ -1,5 +1,6 @@
 import { EventModel } from "@/models/event-model";
 import { UserModel } from "@/models/user-model";
+import dbConnect from "@/services/mongodbConnect";
 import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
