@@ -1,4 +1,4 @@
-const { getPlaiceholder } = require("plaiceholder");
+import { getPlaiceholder } from "plaiceholder";
 
 export const getBlurData = async (src) => {
   const buffer = await fetch(src).then(async (res) => Buffer.from(await res.arrayBuffer()));
