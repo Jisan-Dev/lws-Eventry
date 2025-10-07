@@ -62,15 +62,10 @@ const updateGoing = async (eventId, authId, authName, authEmail) => {
     to_email: authEmail,
     event: event.name,
   };
-  await emailjs.send(
-    process.env.NEXT_PUBLIC_EMAILJS_SERVICEID,
-    process.env.NEXT_PUBLIC_EMAILJS_TEMPLATEID,
-    formD,
-    {
-      publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
-      privateKey: process.env.NEXT_PUBLIC_EMAILJS_PRIVATE_KEY,
-    }
-  );
+  await emailjs.send(process.env.EMAILJS_SERVICEID, process.env.EMAILJS_TEMPLATEID, formD, {
+    publicKey: process.env.EMAILJS_PUBLIC_KEY,
+    privateKey: process.env.EMAILJS_PRIVATE_KEY,
+  });
   console.log("SUCCESS!");
 };
 
