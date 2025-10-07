@@ -29,7 +29,12 @@ export default async function HeroSection({ event }) {
           </div>
         </div>
 
-        <ActionButtons fromDetails={true} />
+        <ActionButtons
+          eventId={event?._id}
+          interestedUserIds={event?.interested_ids}
+          goingUserIds={event?.going_ids}
+          fromDetails={true}
+        />
       </div>
     </section>
   );

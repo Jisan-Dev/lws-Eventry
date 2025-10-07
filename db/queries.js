@@ -1,10 +1,10 @@
 import { EventModel } from "@/models/event-model";
 import { UserModel } from "@/models/user-model";
-import dbConnect from "@/services/mongodbConnect";
 import emailjs from "@emailjs/nodejs";
 import mongoose from "mongoose";
 
 const getAllEvents = async (query) => {
+  // dbConnect();
   // dbConnect();
   let allEvents = [];
 
@@ -19,8 +19,9 @@ const getAllEvents = async (query) => {
 };
 
 const getEventById = async (eventId) => {
+  // dbConnect();
   const event = await EventModel.findById(eventId);
-  return event;
+  return JSON.parse(JSON.stringify(event));
 };
 
 const createUser = async (userData) => {
@@ -28,7 +29,7 @@ const createUser = async (userData) => {
 };
 
 const findUserByCredentials = async (credentials) => {
-  dbConnect();
+  // dbConnect();
   const userDb = await UserModel.findOne(credentials);
   if (userDb) {
     const user = JSON.parse(JSON.stringify(userDb));
@@ -38,6 +39,7 @@ const findUserByCredentials = async (credentials) => {
 };
 
 const updateInterest = async (eventId, authId) => {
+  // dbConnect();
   const event = await EventModel.findById(eventId);
 
   if (event) {
@@ -54,6 +56,7 @@ const updateInterest = async (eventId, authId) => {
 };
 
 const updateGoing = async (eventId, authId, authName, authEmail) => {
+  // dbConnect();
   const event = await EventModel.findById(eventId);
   event.going_ids.push(new mongoose.Types.ObjectId(authId));
   event.save();
